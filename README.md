@@ -1,35 +1,12 @@
-# incidentes-amantesdlp-frontend
-Proyecto creado con React y Vite para el frontend de la app de reporte de incidentes.
+# React + Vite
 
-## Dependencias Necesarias:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Node.js (versión 16 o superior recomendada), descarga [aquí](https://nodejs.org/es/download)
+Currently, two official plugins are available:
 
-npm como gestor de paquetes
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Instalación y ejecución
+## Expanding the ESLint configuration
 
-Sigue estos pasos para instalar y ejecutar el proyecto en tu entorno local:
-
-1. Clonar el repositorio
-```bash
- git clone https://github.com/tu-usuario/nombre-del-repositorio.git
- cd incidentes-amantesdlp-frontend
-```
-
-2. Instalar dependencias
-
-```bash
- npm install 
-``` 
-
-3. Ejecutar el servidor de desarrollo
-
-```bash
- npm run dev  
-```
-## Tecnologías utilizadas
-
-React - Biblioteca para construir interfaces de usuario.
-
-Vite - Herramienta rápida para el desarrollo de aplicaciones web modernas.
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
