@@ -33,3 +33,13 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu entorno local:
 React - Biblioteca para construir interfaces de usuario.
 
 Vite - Herramienta rápida para el desarrollo de aplicaciones web modernas.
+
+## Bibliotecas usadas
+
+Axios - Biblioteca usada para configurar las peticiones al backend.
+React Router - Biblioteca usada para configurar las rutas de las páginas.
+TaildwindCSS - Biblioteca usada para los estilos de CSS de la aplicación
+
+## Uso de IA
+
+Para la parte de Frontend usamos Claude para sacar la estructura general, el diseño y gran parte de la lógica, Deepseek para debugear, Copilot para acompletar código, dado que no tenemos gran conocimiento de las tecnologías necesarias. 
