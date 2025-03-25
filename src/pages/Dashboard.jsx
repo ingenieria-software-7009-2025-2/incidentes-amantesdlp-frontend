@@ -9,10 +9,13 @@ function Dashboard() {
   
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
+    console.log('Usuario actual:', currentUser); //Verifica si el usuario está autenticado
     if (currentUser) {
       setUser(currentUser);
+    } else{
+      navigate('/login');
     }
-  }, []);
+  }, [navigate]);
   
   const handleLogout = () => {
     authService.logout();
