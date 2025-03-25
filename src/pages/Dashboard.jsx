@@ -9,10 +9,13 @@ function Dashboard() {
   
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
+    console.log('Usuario actual:', currentUser); //Verifica si el usuario está autenticado
     if (currentUser) {
       setUser(currentUser);
+    } else{
+      navigate('/login');
     }
-  }, []);
+  }, [navigate]);
   
   const handleLogout = () => {
     authService.logout();
@@ -34,7 +37,7 @@ function Dashboard() {
           <div className="flex h-16 justify-between">
             <div className="flex">
               <div className="flex flex-shrink-0 items-center">
-                <h1 className="text-xl font-bold text-gray-800">Mi Aplicación</h1>
+                <h1 className="text-xl font-bold text-gray-800">ReportaT</h1>
               </div>
             </div>
             <div className="flex items-center">

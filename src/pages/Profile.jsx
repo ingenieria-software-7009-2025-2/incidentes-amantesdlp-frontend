@@ -5,7 +5,7 @@ import userService from '../services/userService';
 function Profile() {
   const [userData, setUserData] = useState({
     name: '',
-    email: '',
+    mail: '',
     // otros campos de perfil
   });
   const [isEditing, setIsEditing] = useState(false);
@@ -94,18 +94,18 @@ function Profile() {
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="mail" className="block text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                value={userData.email}
+                id="mail"
+                name="mail"
+                type="mail"
+                value={userData.mail}
                 disabled
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 shadow-sm"
               />
-              <p className="mt-1 text-xs text-gray-500">El email no se puede modificar</p>
+              <p className="mt-1 text-xs text-gray-500">El mail no se puede modificar</p>
             </div>
             
             {/* Agrega aquí más campos si es necesario */}
