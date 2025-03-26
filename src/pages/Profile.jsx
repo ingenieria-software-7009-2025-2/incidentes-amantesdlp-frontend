@@ -1,45 +1,54 @@
-// src/pages/Profile.js
 import { useState, useEffect } from 'react';
 import userService from '../services/userService';
+import authService from '../services/authService';
 
 function Profile() {
   const [userData, setUserData] = useState({
     name: '',
     mail: '',
-    // otros campos de perfil
   });
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  
+
   useEffect(() => {
+    if (!authService.isAuthenticated()) {
+      window.location.href = '/login';
+      return;
+    }
+
     const fetchUserData = async () => {
       try {
         const response = await userService.getProfile();
-        setUserData(response.data);
+        console.log("Datos recibidos del backend:", response.data); // Para depuración
+        setUserData({
+          name: response.data.name || '',     // Si no hay nombre, muestra cadena vacía
+          mail: response.data.mail || '',    // Muestra el valor exacto del backend (puede ser "9")
+        });
       } catch (err) {
+        console.error("Error al cargar perfil:", err);
         setError('Error al cargar los datos del perfil');
       } finally {
         setIsLoading(false);
       }
     };
-    
+
     fetchUserData();
   }, []);
-  
+
   const handleChange = (e) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value
     });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    
+
     try {
       await userService.updateProfile(userData);
       setSuccess('Perfil actualizado con éxito');
@@ -48,7 +57,7 @@ function Profile() {
       setError(err.response?.data?.message || 'Error al actualizar el perfil');
     }
   };
-  
+
   if (isLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -56,24 +65,24 @@ function Profile() {
       </div>
     );
   }
-  
+
   return (
     <div className="min-h-screen bg-gray-100 py-12">
       <div className="mx-auto max-w-md rounded-lg bg-white p-8 shadow-md">
         <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">Mi Perfil</h2>
-        
+
         {error && (
           <div className="mb-4 rounded-md bg-red-50 p-4">
             <div className="text-sm text-red-700">{error}</div>
           </div>
         )}
-        
+
         {success && (
           <div className="mb-4 rounded-md bg-green-50 p-4">
             <div className="text-sm text-green-700">{success}</div>
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
@@ -92,7 +101,7 @@ function Profile() {
                 }`}
               />
             </div>
-            
+
             <div>
               <label htmlFor="mail" className="block text-sm font-medium text-gray-700">
                 Email
@@ -100,17 +109,17 @@ function Profile() {
               <input
                 id="mail"
                 name="mail"
-                type="mail"
+                type="text"
                 value={userData.mail}
                 disabled
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 shadow-sm"
               />
-              <p className="mt-1 text-xs text-gray-500">El mail no se puede modificar</p>
+              <p className="mt-1 text-xs text-gray-500">
+                {userData.mail ? "El mail no se puede modificar" : "No hay correo registrado"}
+              </p>
             </div>
-            
-            {/* Agrega aquí más campos si es necesario */}
           </div>
-          
+
           <div className="mt-6">
             {isEditing ? (
               <div className="flex space-x-3">

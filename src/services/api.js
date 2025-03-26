@@ -1,20 +1,21 @@
-import axios from 'axios';
+// src/services/api.js
+import axios from "axios";
 
-// Crear una instancia de axios con una URL base
+// Crea la instancia base de Axios
 const api = axios.create({
-  baseURL: 'http://localhost:8080/v1', // URL del backend
-  timeout: 5000, // Tiempo máximo de espera (5 segundos)
+  baseURL: "http://localhost:8080/v1",
+  timeout: 5000,
   headers: {
-    'Content-Type': 'application/json',
-  }
+    "Content-Type": "application/json",
+  },
 });
 
-// Interceptor para agregar el token de autenticación en cada petición
+// Interceptor para agregar el token a todas las solicitudes
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token"); // Obtén el token del localStorage
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers["Authorization"] = token; // Agrega el token al header SIN "Bearer"
     }
     return config;
   },
@@ -23,19 +24,17 @@ api.interceptors.request.use(
   }
 );
 
-// Interceptor para manejar errores en las respuestas
+// Interceptor para manejar errores de respuesta
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   (error) => {
-    // Si el error es 401 (No autorizado), podríamos redirigir al login
-    if (error.response && error.response.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
+    if (error.response?.status === 401 && !window.location.pathname.includes("/login")) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }
 );
 
-export default api;
+export default api;;
