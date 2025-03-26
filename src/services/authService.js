@@ -1,4 +1,3 @@
-// src/services/authService.js
 import api from './api';
 
 const authService = {
@@ -9,7 +8,7 @@ const authService = {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify({
           id: response.data.id,
-          mail: response.data.mail,
+          mail: response.data.mcli || response.data.mail, // Mapear "mcli" si es necesario
         }));
       }
       return response.data;
@@ -36,6 +35,19 @@ const authService = {
 
   isAuthenticated: () => {
     return !!localStorage.getItem('token');
+  },
+
+  register: async (userData) => {
+    try {
+      const response = await api.post('/users/create', userData);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+      }
+      return response.data;
+    } catch (error) {
+      throw error.response?.data?.message || 'Error al registrarse';
+    }
   }
 };
 
