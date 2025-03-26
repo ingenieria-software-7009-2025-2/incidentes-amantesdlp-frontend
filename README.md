@@ -42,4 +42,4 @@ TaildwindCSS - Biblioteca usada para los estilos de CSS de la aplicación
 
 ## Uso de IA
 
-Para la parte de Frontend usamos Claude para sacar la estructura general, el diseño y gran parte de la lógica, Deepseek para debugear, Copilot para acompletar código, dado que no tenemos gran conocimiento de las tecnologías necesarias. 
+Para la parte de Frontend usamos Claude para sacar la estructura general, el diseño y gran parte de la lógica, Deepseek para debugear, Copilot para acompletar código, dado que no tenemos gran conocimiento de las tecnologías necesarias.Una de las desventajas que estamos teniendo y tuvimos fue que al buscar los errores e intentar solucionarlos había una posibilidad que los hicera mas difíciles los problemas que teniamos anteriormente.
